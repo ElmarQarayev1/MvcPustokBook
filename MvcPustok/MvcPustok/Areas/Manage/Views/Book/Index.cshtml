@@ -9,10 +9,10 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Book</h1>
-        @*<a asp-action="create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <h1 class="h3 mb-0 text-gray-800">Sliders</h1>
+        <a asp-action="create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             Create
-        </a>*@
+        </a>
     </div>
     <div class="row">
         <div class="col-md-12 mx-auto">
@@ -21,16 +21,15 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Desc</th>
-                        <th scope="col">CPrice</th>
-                        <th scope="col">SPrice</th>
-                        <th scope="col">DisPer</th>
-                        <th scope="col">BookImgCount</th>
-                        <th scope="col">StockStat</th>
-                        <th scope="col">IsFeat</th>
-                        <th scope="col">IsNew</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Genre</th>
+                        <th scope="col">SalePrice</th>
+                        <th scope="col">CostPrice</th>
+                        <th scope="col">Discount</th>
+                        <th scope="col">Tags</th>
                         <th scope="col">Action</th>
                     </tr>
+
                 </thead>
                 <tbody>
                     @foreach (var item in Model.Items)
@@ -38,20 +37,32 @@
                         <tr>
                             <th scope="row">@(++order)</th>
                             <td>@item.Name</td>
-                            <td>@item.Desc</td>
-                            <td>@item.CostPrice</td>
-                            <td>@item.SalePrice</td>
-                            <td>@item.DiscountPercent</td>
-                            <td>@item.BookImages.Count</td>
-                            <td>@item.StockStatus</td>
-                            <td>@item.IsFeatured</td>
-                             <td>@item.IsNew</td>
-                             <td>
-                                <a class="btn btn-warning" href="#">Edit</a>
-                                <a class="btn btn-danger" href="#">Delete</a>
+                            <td>@item.Author?.Fullname</td>
+                            <td>@item.Genre?.Name</td>
+                            <td>@item.SalePrice.ToString("0.00")</td>
+                            <td>@item.CostPrice.ToString("0.00")</td>
+                            <td>@item.DiscountPercent.ToString("0.##")%</td>
+                            <td>
+                                <ul class="tag-list">
+                                    @foreach (var bookTag in item.BookTags)
+                                    {
+                                        <li>@bookTag.Tag?.Name</li>
+                                    }
+                                </ul>
+                            </td>
+                            <td>
+
+                            <td>
+                                <img width="150" src="~/uploads/book/@item.BookImages.FirstOrDefault()?.Name" alt="@item.Name" />
+                            </td>
+                            <td>
+                                <a class="btn btn-warning" asp-action="edit" asp-route-id="@item.Id">Edit</a>
+                                <a class="btn btn-danger delete-btn" asp-action="delete" asp-route-id="@item.Id">Delete</a>
                             </td>
                         </tr>
                     }
+
+
                 </tbody>
             </table>
             <nav aria-label="..." class="d-flex justify-content-center">
@@ -100,3 +111,7 @@
     </div>
 
 </div>
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+}

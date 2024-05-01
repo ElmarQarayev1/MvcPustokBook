@@ -23,14 +23,17 @@ namespace MvcPustok.Areas.Manage.Controllers
         public IActionResult Index(int page = 1)
         {
             var query = _context.Sliders.OrderByDescending(x => x.Id);
-            return View(PaginatedList<Slider>.Create(query, page, 2));
+            var pageData = PaginatedList<Slider>.Create(query, page, 2);
+
+            if (pageData.TotalPages < page) return RedirectToAction("index", new { page = pageData.TotalPages });
+
+            return View(pageData);
         }
 
         public IActionResult Create()
         {
             return View();
         }
-
         [HttpPost]
         public IActionResult Create(Slider slider)
         {
@@ -45,11 +48,11 @@ namespace MvcPustok.Areas.Manage.Controllers
             //    return View();
             //}
 
-            if (slider.ImageFile.ContentType != "image/png" && slider.ImageFile.ContentType != "image/jpeg")
-            {
-                ModelState.AddModelError("ImageFile", "File type must be png,jpeg or jpg");
-                return View();
-            }
+            //if (slider.ImageFile.ContentType != "image/png" && slider.ImageFile.ContentType != "image/jpeg")
+            //{
+            //    ModelState.AddModelError("ImageFile", "File type must be png,jpeg or jpg");
+            //    return View();
+            //}
 
             slider.ImageName = FileManager.Save(slider.ImageFile, _env.WebRootPath, "uploads/slider");
 
@@ -62,7 +65,7 @@ namespace MvcPustok.Areas.Manage.Controllers
         {
             Slider slider = _context.Sliders.FirstOrDefault(x => x.Id == id);
 
-            if (slider == null) return RedirectToAction("Error", "NotFound");
+            if (slider == null) return RedirectToAction("notfound", "error");
 
             return View(slider);
         }
@@ -72,7 +75,7 @@ namespace MvcPustok.Areas.Manage.Controllers
             if (!ModelState.IsValid) return View();
 
             Slider existSlider = _context.Sliders.Find(slider.Id);
-            if (existSlider == null) return RedirectToAction("Error", "NotFound");
+            if (existSlider == null) return RedirectToAction("notfound", "error");
 
             string deletedFile = null;
             if (slider.ImageFile != null)
@@ -113,7 +116,7 @@ namespace MvcPustok.Areas.Manage.Controllers
         {
             Slider slider = _context.Sliders.FirstOrDefault(m => m.Id == id);
 
-            if (slider is null) return RedirectToAction("Error", "NotFound");
+            if (slider is null) return RedirectToAction("notfound", "error");
 
             string deletedFile = slider.ImageName;
 

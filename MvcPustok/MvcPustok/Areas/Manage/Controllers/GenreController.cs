@@ -50,7 +50,7 @@ namespace MvcPustok.Areas.Manage.Controllers
         {
             Genre genre = _context.Genres.Find(id);
 
-            if (genre == null) return RedirectToAction("Error", "NotFound");
+            if (genre == null) return RedirectToAction("notfound", "error");
 
             return View(genre);
         }
@@ -64,7 +64,7 @@ namespace MvcPustok.Areas.Manage.Controllers
 
             Genre existGenre = _context.Genres.Find(genre.Id);
 
-            if (existGenre == null) return RedirectToAction("Error", "NotFound");
+            if (existGenre == null) return RedirectToAction("notfound", "error");
 
             if (_context.Genres.Any(x => x.Name == genre.Name))
             {

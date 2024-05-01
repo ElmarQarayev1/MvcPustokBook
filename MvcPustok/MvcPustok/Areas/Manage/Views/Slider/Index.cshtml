@@ -1,6 +1,6 @@
 ﻿@model PaginatedList<Slider>
 @{
-    int order = (Model.PageIndex-1)*Model.PageSize;
+    int order = (Model.PageIndex - 1) * Model.PageSize;
 }
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -87,3 +87,7 @@
         </div>
     </div>
 </div>
+
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+}

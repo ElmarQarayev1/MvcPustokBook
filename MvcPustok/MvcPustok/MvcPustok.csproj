@@ -25,6 +25,9 @@
     <None Remove="Areas\Manage\Views\Slider\" />
     <None Remove="Areas\Manage\Views\Book\" />
     <None Remove="Helpers\" />
+    <None Remove="Areas\Manage\Views\Error\" />
+    <None Remove="Attributes\" />
+    <None Remove="Attributes\ValidationAttributes\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -48,6 +51,10 @@
     <Folder Include="Helpers\" />
     <Folder Include="wwwroot\uploads\" />
     <Folder Include="wwwroot\uploads\slider\" />
+    <Folder Include="Areas\Manage\Views\Error\" />
+    <Folder Include="Attributes\" />
+    <Folder Include="Attributes\ValidationAttributes\" />
+    <Folder Include="wwwroot\uploads\book\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.18" />
@@ -66,5 +73,6 @@
     <Content Remove="wwwroot\manage\assets\vendor\" />
     <Content Remove="wwwroot\uploads\" />
     <Content Remove="wwwroot\uploads\slider\" />
+    <Content Remove="wwwroot\uploads\book\" />
   </ItemGroup>
 </Project>

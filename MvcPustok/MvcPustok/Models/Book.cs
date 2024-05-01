@@ -34,6 +34,7 @@ namespace MvcPustok.Models
 		public Genre? Genre { get; set; }
 
 		public List<BookImages>? BookImages { get; set; }
+        public List<BookTags>? BookTags { get; set; }
 	}
 }
 

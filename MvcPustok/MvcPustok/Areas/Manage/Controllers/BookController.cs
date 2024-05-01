@@ -28,6 +28,7 @@ namespace MvcPustok.Areas.Manage.Controllers
         {
             ViewBag.Authors = _context.Authors.ToList();
             ViewBag.Genres = _context.Genres.ToList();
+            //ViewBag.Tags= _context.Tags.ToList();
             return View();
         }
       
@@ -38,9 +39,10 @@ namespace MvcPustok.Areas.Manage.Controllers
             {
                 ViewBag.Authors = _context.Authors.ToList();
                 ViewBag.Genres = _context.Genres.ToList();
+               // ViewBag.Tags = _context.Tags.ToList();
                 return View(book);
             }
-            if (!_context.Authors.Any(x => x.Id == book.Id))
+            if (!_context.Authors.Any(x => x.Id == book.AuthorId))
             {
                 return RedirectToAction("notfound", "error");
             }
@@ -54,7 +56,7 @@ namespace MvcPustok.Areas.Manage.Controllers
             return RedirectToAction("index");
             
         }
-       
+  
         public IActionResult Edit(int id)
         {
             Book book = _context.Books.Find(id);
@@ -64,6 +66,8 @@ namespace MvcPustok.Areas.Manage.Controllers
             }
             ViewBag.Authors = _context.Authors.ToList();
             ViewBag.Genres = _context.Genres.ToList();
+           // ViewBag.Tags = _context.Tags.ToList();
+
             return View(book);
 
         }
@@ -79,7 +83,8 @@ namespace MvcPustok.Areas.Manage.Controllers
 
             if (book.GenreId != existBook.GenreId && !_context.Genres.Any(x => x.Id == book.GenreId))
                 return RedirectToAction("notfound", "error");
-
+            //if(!_context.Tags.Any(tag => book.BookTags.Any(bookTag => bookTag.TagId == tag.Id)))
+            //    return RedirectToAction("notfound", "error");
             existBook.Name = book.Name;
             existBook.Desc = book.Desc;
             existBook.SalePrice = book.SalePrice;
@@ -88,6 +93,7 @@ namespace MvcPustok.Areas.Manage.Controllers
             existBook.IsNew = book.IsNew;
             existBook.IsFeatured = book.IsFeatured;
             existBook.StockStatus = book.StockStatus;
+            //existBook.BookTags= book.BookTags;
 
             _context.SaveChanges();
 

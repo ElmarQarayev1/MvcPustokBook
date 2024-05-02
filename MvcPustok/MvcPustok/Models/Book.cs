@@ -2,13 +2,14 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations.Schema;
+using MvcPustok.Attributes.ValidationAttributes;
 
 namespace MvcPustok.Models
 {
 	public class Book : AuditEntity
     {
         [MaxLength(50)]
-        [MinLength(10)]
+        [MinLength(4)]
         public string Name { get; set; }
         [MaxLength(500)]
         public string Desc { get; set; }
@@ -32,9 +33,22 @@ namespace MvcPustok.Models
         public Author? Author { get; set; }
 
 		public Genre? Genre { get; set; }
-
-		public List<BookImages>? BookImages { get; set; }
-        public List<BookTags>? BookTags { get; set; }
-	}
+        [NotMapped]
+        [MaxSize(2 * 1024 * 1024)]
+        [AllowedFileTypes("image/png", "image/jpeg")]
+        public IFormFile? PosterFile { get; set; }
+        [NotMapped]
+        [MaxSize(2 * 1024 * 1024)]
+        [AllowedFileTypes("image/png", "image/jpeg")]
+        public IFormFile? HoverFile { get; set; }
+        [NotMapped]
+        [MaxSize(2 * 1024 * 1024)]
+        [AllowedFileTypes("image/png", "image/jpeg")]
+        public List<IFormFile>? ImageFiles { get; set; } = new List<IFormFile>();
+        public List<BookImages>? BookImages { get; set; } = new List<BookImages>();
+        public List<BookTags> BookTags { get; set; } = new List<BookTags>();
+        [NotMapped]
+        public List<int>? TagIds { get; set; } = new List<int>();
+    }
 }
 

@@ -7,7 +7,6 @@ namespace MvcPustok.Models
 	{
 		
 		public int BookId { get; set; }
-
         [Required]
         [MaxLength(250)]
         public string Name { get; set; }

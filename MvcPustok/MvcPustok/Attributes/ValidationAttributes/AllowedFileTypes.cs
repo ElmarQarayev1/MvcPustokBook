@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Humanizer.Bytes;
 
 namespace MvcPustok.Attributes.ValidationAttributes
 {
@@ -14,18 +15,26 @@ namespace MvcPustok.Attributes.ValidationAttributes
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
 
-            IFormFile? file = value as IFormFile;
+            List<IFormFile> fileList = new List<IFormFile>();
 
-            if (file != null)
+            if (value is List<IFormFile> files) fileList = files;
+            else if (value is IFormFile file) fileList.Add(file);
+
+            foreach (var file in fileList)
             {
-                if (!_types.Contains(file.ContentType))
+                if (file != null)
                 {
-                    string errorMessage = "File must be one of the types: " + String.Join(",", _types);
-                    return new ValidationResult(errorMessage);
+                    if (!_types.Contains(file.ContentType))
+                    {
+                        string errorMessage = "File must be one of the types: " + String.Join(",", _types);
+                        return new ValidationResult(errorMessage);
+                    }
                 }
             }
 
+
             return ValidationResult.Success;
+
         }
     }
 }

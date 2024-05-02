@@ -8,7 +8,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Genres</h1>
+        <h1 class="h3 mb-0 text-gray-800">Books</h1>
         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             Create
         </a>
@@ -31,12 +31,11 @@
                     <select asp-for="GenreId" class="form-control" id="GenreId" asp-items="@(new SelectList(ViewBag.Genres,nameof(Genre.Id),nameof(Genre.Name)))">
                     </select>
                 </div>
-                @*<div class="form-group">
-                    <label for="tags">Tags</label>
-                    <select asp-for="BookTags" class="form-control" id="tags"  asp-items="@(new SelectList(ViewBag.Tags, nameof(Tag.Id), nameof(Tag.Name)))">
+                <div class="form-group">
+                    <label for="AuthorId">Tags</label>
+                    <select asp-for="TagIds" class="form-control" id="TagIds" asp-items="@(new SelectList(ViewBag.Tags,nameof(Tag.Id),nameof(Tag.Name)))">
                     </select>
-                </div>*@
-
+                </div>
                 <div class="form-group">
                     <label for="Desc">Desc</label>
                     <textarea asp-for="Desc" class="form-control" id="Desc" placeholder=" "></textarea>
@@ -87,6 +86,37 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="imgInput">PosterFile</label>
+                            <input asp-for="PosterFile" class="form-control imgInput" placeholder=" ">
+                            <div class="preview-box">
+                                <img width="200" class="previewImg" />
+                            </div>
+                            <span class="text-danger" asp-validation-for="PosterFile"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="imgInput">HoverFile</label>
+                            <input asp-for="HoverFile" class="form-control imgInput" placeholder=" ">
+                            <div class="preview-box">
+                                <img width="200" class="previewImg" />
+                            </div>
+                            <span class="text-danger" asp-validation-for="HoverFile"></span>
+                        </div>
+
+                    </div>
+                </div>
+              
+                <div class="form-group">
+                    <label for="imgInput">ImageFiles</label>
+                    <input asp-for="ImageFiles" class="form-control imgInput" placeholder=" ">
+                    <div class="preview-box">
+                        <img width="200" class="previewImg" />
+                    </div>
+                    <span class="text-danger" asp-validation-for="ImageFiles"></span>
                 </div>
 
                 <button class="btn btn-primary" type="submit">

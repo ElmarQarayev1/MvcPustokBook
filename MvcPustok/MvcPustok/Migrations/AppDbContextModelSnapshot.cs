@@ -315,7 +315,7 @@ namespace MvcPustok.Migrations
             modelBuilder.Entity("MvcPustok.Models.BookTags", b =>
                 {
                     b.HasOne("MvcPustok.Models.Book", "Book")
-                        .WithMany()
+                        .WithMany("BookTags")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -339,6 +339,8 @@ namespace MvcPustok.Migrations
             modelBuilder.Entity("MvcPustok.Models.Book", b =>
                 {
                     b.Navigation("BookImages");
+
+                    b.Navigation("BookTags");
                 });
 
             modelBuilder.Entity("MvcPustok.Models.Genre", b =>

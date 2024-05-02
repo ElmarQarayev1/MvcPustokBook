@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KMAAXLV02wVQ6pOA6yds898qVzBKkhwKdEX3CogPOqQ=",
+  "Hash": "VSJy+dfWxnz92sqRTUcquf2g9InCikW0b4e3VvDO8z4=",
   "Source": "MvcPustok",
   "BasePath": "_content/MvcPustok",
   "Mode": "Default",
@@ -33932,6 +33932,40 @@
       "OriginalItemSpec": "wwwroot/manage/assets/vendor/jquery/jquery.slim.min.map"
     },
     {
+      "Identity": "/Users/elmar/Desktop/CodeAcademy/MVC/MvcPustokBook/MvcPustok/MvcPustok/wwwroot/uploads/book/01e7b3e8-0396-47fc-93f8-f69bd0e46b1cproduct-details-4.jpg",
+      "SourceId": "MvcPustok",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/elmar/Desktop/CodeAcademy/MVC/MvcPustokBook/MvcPustok/MvcPustok/wwwroot/",
+      "BasePath": "_content/MvcPustok",
+      "RelativePath": "uploads/book/01e7b3e8-0396-47fc-93f8-f69bd0e46b1cproduct-details-4.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/book/01e7b3e8-0396-47fc-93f8-f69bd0e46b1cproduct-details-4.jpg"
+    },
+    {
+      "Identity": "/Users/elmar/Desktop/CodeAcademy/MVC/MvcPustokBook/MvcPustok/MvcPustok/wwwroot/uploads/book/022e963b-f196-41f2-bb87-fc08c571b2a8product-10.jpg",
+      "SourceId": "MvcPustok",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/elmar/Desktop/CodeAcademy/MVC/MvcPustokBook/MvcPustok/MvcPustok/wwwroot/",
+      "BasePath": "_content/MvcPustok",
+      "RelativePath": "uploads/book/022e963b-f196-41f2-bb87-fc08c571b2a8product-10.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/book/022e963b-f196-41f2-bb87-fc08c571b2a8product-10.jpg"
+    },
+    {
       "Identity": "/Users/elmar/Desktop/CodeAcademy/MVC/MvcPustokBook/MvcPustok/MvcPustok/wwwroot/uploads/book/126dd12e-2311-442e-9987-b66c3cdce7292fb8be20-5633-45ce-990e-9b70df3b27e8292dfdba-f1fe-4b3b-896e-5f0439c5a2222d75924f-60b6-4f8c-aca5-7f61041edb1bproduct-3.jpg",
       "SourceId": "MvcPustok",
       "SourceType": "Discovered",
@@ -34032,6 +34066,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/uploads/book/2b56d271-7922-44d7-be0b-d42f95c3bde1product-6.jpg"
+    },
+    {
+      "Identity": "/Users/elmar/Desktop/CodeAcademy/MVC/MvcPustokBook/MvcPustok/MvcPustok/wwwroot/uploads/book/2b69fd45-d706-44c8-b272-1d0fdd020317product-13.jpg",
+      "SourceId": "MvcPustok",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/elmar/Desktop/CodeAcademy/MVC/MvcPustokBook/MvcPustok/MvcPustok/wwwroot/",
+      "BasePath": "_content/MvcPustok",
+      "RelativePath": "uploads/book/2b69fd45-d706-44c8-b272-1d0fdd020317product-13.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/book/2b69fd45-d706-44c8-b272-1d0fdd020317product-13.jpg"
     },
     {
       "Identity": "/Users/elmar/Desktop/CodeAcademy/MVC/MvcPustokBook/MvcPustok/MvcPustok/wwwroot/uploads/book/2d75924f-60b6-4f8c-aca5-7f61041edb1bproduct-3.jpg",
@@ -34627,6 +34678,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/uploads/book/ce0946da-ab21-4494-b7ea-5a0f565749a78b0c40f7-920d-429b-90e2-72f10ddc6a79292dfdba-f1fe-4b3b-896e-5f0439c5a2222d75924f-60b6-4f8c-aca5-7f61041edb1bproduct-3.jpg"
+    },
+    {
+      "Identity": "/Users/elmar/Desktop/CodeAcademy/MVC/MvcPustokBook/MvcPustok/MvcPustok/wwwroot/uploads/book/d0e2b275-6b1a-457a-a6ff-e1e1e1b67373product-details-5.jpg",
+      "SourceId": "MvcPustok",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/elmar/Desktop/CodeAcademy/MVC/MvcPustokBook/MvcPustok/MvcPustok/wwwroot/",
+      "BasePath": "_content/MvcPustok",
+      "RelativePath": "uploads/book/d0e2b275-6b1a-457a-a6ff-e1e1e1b67373product-details-5.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/book/d0e2b275-6b1a-457a-a6ff-e1e1e1b67373product-details-5.jpg"
     },
     {
       "Identity": "/Users/elmar/Desktop/CodeAcademy/MVC/MvcPustokBook/MvcPustok/MvcPustok/wwwroot/uploads/book/e09e93e0-a5ee-407f-8dab-1b2ae21aa995ad485164-b6fc-449f-a2db-5d649a1b6482product-2.jpg",

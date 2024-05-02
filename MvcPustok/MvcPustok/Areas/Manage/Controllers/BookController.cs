@@ -89,6 +89,7 @@ namespace MvcPustok.Areas.Manage.Controllers
                 {
                     Name = FileManager.Save(imgFile, _env.WebRootPath, "uploads/book"),
                     Status = null,
+                    Book = book
                 };
                 book.BookImages.Add(bookImg);
             }

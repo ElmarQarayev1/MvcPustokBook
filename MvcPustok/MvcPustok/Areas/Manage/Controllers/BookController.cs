@@ -22,7 +22,7 @@ namespace MvcPustok.Areas.Manage.Controllers
         public IActionResult Index(int page = 1)
         {
             var query = _context.Books.Include(x => x.Author).Include(x => x.Genre).Include(x => x.BookImages.Where(x => x.Status == true)).Include(x=>x.BookTags).ThenInclude(x=>x.Tag).OrderByDescending(x => x.Id);
-            return View(PaginatedList<Book>.Create(query,page,2));
+            return View(PaginatedList<Book>.Create(query,page,3));
         }
 
         public IActionResult Create()
@@ -32,7 +32,6 @@ namespace MvcPustok.Areas.Manage.Controllers
             ViewBag.Tags= _context.Tags.ToList();
             return View();
         }
-
         [HttpPost]
         public IActionResult Create(Book book)
         {
@@ -71,13 +70,13 @@ namespace MvcPustok.Areas.Manage.Controllers
             {
                 Name = FileManager.Save(book.PosterFile, _env.WebRootPath, "uploads/book"),
                 Status = true,
-                Book = book
+                 Book = book
             };
             BookImages hover = new BookImages
             {
                 Name = FileManager.Save(book.HoverFile, _env.WebRootPath, "uploads/book"),
                 Status = false,
-                Book = book
+               Book = book
             };
 
             _context.BookImages.Add(poster);

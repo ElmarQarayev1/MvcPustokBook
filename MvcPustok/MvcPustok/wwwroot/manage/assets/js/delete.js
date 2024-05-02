@@ -1,23 +1,27 @@
 ﻿$(document).ready(function () {
     $(".imgInput").change(function (e) {
-        let box = $(this).parent().find(".preview-box");
-        $(box).html("");
-
+        let a = $(this).parent().find(".preview-box");
+        $(a).html("");
         for (var i = 0; i < e.target.files.length; i++) {
-
-            let img = document.createElement("img");
-            img.style.width = "200px";
-            img.classList.add("previewImg");
+            let image = document.createElement("img");
+            image.style.width = "205px";
+            image.classList.add("previewImg");
 
             let reader = new FileReader();
             console.log(e.target.nextElementSibling);
             reader.readAsDataURL(e.target.files[i]);
             reader.onload = () => {
-                img.setAttribute("src", reader.result);
-                $(box).append(img)
+                image.setAttribute("src", reader.result);
+                $(a).append(image)
             }
         }
     })
+    //document.querySelectorAll(".deleteIcon").forEach(function (element) {
+    //    element.addEventListener("click", function () {
+    //        alert("salam");
+    //    });
+    //});
+
     document.querySelectorAll(".deleted").forEach(item => {
         item.addEventListener("click", function (e) {
             e.preventDefault();

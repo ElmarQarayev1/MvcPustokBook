@@ -10,7 +10,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Books</h1>
         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            Create
+            Edit Book
         </a>
     </div>
     <div class="row">
@@ -32,7 +32,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="AuthorId">Tags</label>
+                    <label for="TagIds">Tags</label>
                     <select asp-for="TagIds" class="form-control" id="TagIds" asp-items="@(new SelectList(ViewBag.Tags,nameof(Tag.Id),nameof(Tag.Name)))">
                     </select>
                 </div>
@@ -93,6 +93,7 @@
                             <label for="imgInput">PosterFile</label>
                             <input asp-for="PosterFile" class="form-control imgInput" placeholder=" ">
                             <div class="preview-box">
+                                <a class="deleteIcon"><i class="fa-solid fa-x"></i></a>
                                 <img width="200" class="previewImg" src="~/uploads/book/@Model.BookImages.FirstOrDefault(x=>x.Status==true)?.Name" />
                             </div>
                             <span class="text-danger" asp-validation-for="PosterFile"></span>
@@ -101,7 +102,8 @@
                             <label for="imgInput">HoverFile</label>
                             <input asp-for="HoverFile" class="form-control imgInput" placeholder=" ">
                             <div class="preview-box">
-                                <img width="200" class="previewImg" src="~/uploads/book/@Model.BookImages.FirstOrDefault(x=>x.Status==false)?.Name" />
+                               <a class="deleteIcon"><i class="fa-solid fa-x"></i></a> 
+                                <img width="200" class="previewImg deleteIcon" src="~/uploads/book/@Model.BookImages.FirstOrDefault(x=>x.Status==false)?.Name" />
                             </div>
                             <span class="text-danger" asp-validation-for="HoverFile"></span>
                         </div>
@@ -113,6 +115,7 @@
                     <div class="preview-box">
                         @foreach (var item in Model.BookImages.Where(x => x.Status == null))
                         {
+                            <a class="deleteIcon"><i class="fa-solid fa-x"></i></a>
                             <img width="200" class="previewImg" src="~/uploads/book/@item.Name" />
                         }
                     </div>

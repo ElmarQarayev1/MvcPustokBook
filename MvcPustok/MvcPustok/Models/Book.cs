@@ -49,6 +49,8 @@ namespace MvcPustok.Models
         public List<BookTags> BookTags { get; set; } = new List<BookTags>();
         [NotMapped]
         public List<int>? TagIds { get; set; } = new List<int>();
+        [NotMapped]
+        public List<int>? BookImageIds { get; set; } = new List<int>();
     }
 }
 

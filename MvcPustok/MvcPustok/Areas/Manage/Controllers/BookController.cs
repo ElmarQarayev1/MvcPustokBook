@@ -19,6 +19,29 @@ namespace MvcPustok.Areas.Manage.Controllers
             _context = context;
             _env = env;
         }
+        //public IActionResult setSession()
+        //{
+        //    HttpContext.Session.SetString("name", "elmar");
+        //    return Content("");
+        //}
+
+        //public IActionResult getSession()
+        //{
+        //    return Content(HttpContext.Session.GetString("name"));
+        //}
+        public IActionResult setCookie()
+        {
+            CookieOptions opt = new CookieOptions();
+            opt.Expires = DateTime.Now.AddMinutes(3);
+
+            HttpContext.Response.Cookies.Append("name", "Elmar", opt);
+            return Content("");
+        }
+        public IActionResult getCookie()
+        {
+            return Content(HttpContext.Request.Cookies["name"]);
+        }
+
         public IActionResult Index(int page = 1)
         {
             var query = _context.Books.Include(x => x.Author).Include(x => x.Genre).Include(x => x.BookImages.Where(x => x.Status == true)).Include(x=>x.BookTags).ThenInclude(x=>x.Tag).OrderByDescending(x => x.Id);
@@ -40,6 +63,7 @@ namespace MvcPustok.Areas.Manage.Controllers
 
             if (!ModelState.IsValid)
             {
+
                 ViewBag.Authors = _context.Authors.ToList();
                 ViewBag.Genres = _context.Genres.ToList();
                 ViewBag.Tags = _context.Tags.ToList();
@@ -115,7 +139,7 @@ namespace MvcPustok.Areas.Manage.Controllers
         [HttpPost]
         public IActionResult Edit(Book book)
         {
-            Book? existBook = _context.Books.Find(book.Id);
+            Book? existBook = _context.Books.Include(x => x.BookImages).Include(x => x.BookTags).FirstOrDefault(x => x.Id == book.Id);
             if (existBook == null) return RedirectToAction("notfound", "error");
 
             if (book.AuthorId != existBook.AuthorId && !_context.Authors.Any(x => x.Id == book.AuthorId))
@@ -123,7 +147,43 @@ namespace MvcPustok.Areas.Manage.Controllers
 
             if (book.GenreId != existBook.GenreId && !_context.Genres.Any(x => x.Id == book.GenreId))
                 return RedirectToAction("notfound", "error");
-           
+
+            existBook.BookTags.RemoveAll(x => !book.TagIds.Contains(x.TagId));
+
+            foreach (var tagId in book.TagIds.FindAll(a => !existBook.BookTags.Any(x => x.TagId == a)))
+            {
+                if (!_context.Tags.Any(x => x.Id == tagId)) return RedirectToAction("notfound", "error");
+
+                BookTags bookTag = new BookTags
+                {
+                    TagId = tagId,
+                };
+
+                existBook.BookTags.Add(bookTag);
+            }
+            List<string> removedFileNames = new List<string>();
+
+            List<BookImages> removedImages = existBook.BookImages.FindAll(x => x.Status == null && !book.BookImageIds.Contains(x.Id));
+            removedFileNames = removedImages.Select(x => x.Name).ToList();
+
+            _context.BookImages.RemoveRange(removedImages);
+            if (book.PosterFile != null)
+            {
+                BookImages poster = existBook.BookImages.FirstOrDefault(x => x.Status == true);
+
+                removedFileNames.Add(poster.Name);
+
+                poster.Name = FileManager.Save(book.PosterFile, _env.WebRootPath, "uploads/book");
+            }
+            foreach (var imgFile in book.ImageFiles)
+            {
+                BookImages bookImg = new BookImages
+                {
+                    Name = FileManager.Save(imgFile, _env.WebRootPath, "uploads/book"),
+                    Status = null,
+                };
+                existBook.BookImages.Add(bookImg);
+            }
             existBook.Name = book.Name;
             existBook.Desc = book.Desc;
             existBook.SalePrice = book.SalePrice;
@@ -132,9 +192,28 @@ namespace MvcPustok.Areas.Manage.Controllers
             existBook.IsNew = book.IsNew;
             existBook.IsFeatured = book.IsFeatured;
             existBook.StockStatus = book.StockStatus;
+
             _context.SaveChanges();
 
+            foreach (var fileName in removedFileNames)
+            {
+                FileManager.Delete(_env.WebRootPath, "uploads/book", fileName);
+            }
+
             return RedirectToAction("index");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            Book book = _context.Books.FirstOrDefault(m => m.Id == id);
+
+            if (book is null) return RedirectToAction("notfound", "error");
+
+            _context.Books.Remove(book);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
     }

@@ -11,7 +11,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Books</h1>
         <a asp-action="create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            All Book
+            Create Book
         </a>
     </div>
     <div class="row">
@@ -23,9 +23,11 @@
                         <th scope="col">Name</th>
                         <th scope="col">Author</th>
                         <th scope="col">Genre</th>
+                        <th scope="col">Desc</th>
                         <th scope="col">SalePrice</th>
                         <th scope="col">CostPrice</th>
                         <th scope="col">Discount</th>
+
                         <th scope="col">Tags</th>
                         <th scope="col">BookImg</th>
                         <th scope="col">Action</th>
@@ -39,9 +41,11 @@
                             <td>@item.Name</td>
                             <td>@item.Author?.Fullname</td>
                             <td>@item.Genre?.Name</td>
+                            <td>@item.Desc</td>
                             <td>@item.SalePrice.ToString("0.00")</td>
                             <td>@item.CostPrice.ToString("0.00")</td>
                             <td>@item.DiscountPercent.ToString("0.##")%</td>
+
                             <td>
                                 <ul class="tag-list">
                                     @foreach (var bookTag in item.BookTags)

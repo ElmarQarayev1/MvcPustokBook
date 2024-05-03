@@ -1,28 +1,29 @@
 ﻿$(document).ready(function () {
     $(".imgInput").change(function (e) {
-        let a = $(this).parent().find(".preview-box");
-        $(a).html("");
+        let box = $(this).parent().find(".preview-box");
+        $(box).find(".previewImg").remove();
+
         for (var i = 0; i < e.target.files.length; i++) {
-            let image = document.createElement("img");
-            image.style.width = "205px";
-            image.classList.add("previewImg");
+
+            let img = document.createElement("img");
+            img.style.width = "200px";
+            img.classList.add("previewImg");
 
             let reader = new FileReader();
             console.log(e.target.nextElementSibling);
             reader.readAsDataURL(e.target.files[i]);
             reader.onload = () => {
-                image.setAttribute("src", reader.result);
-                $(a).append(image)
+                img.setAttribute("src", reader.result);
+                $(box).append(img)
             }
-        }
+        } 
     })
-    //document.querySelectorAll(".deleteIcon").forEach(function (element) {
-    //    element.addEventListener("click", function () {
-    //        alert("salam");
-    //    });
-    //});
 
-    document.querySelectorAll(".deleted").forEach(item => {
+    $(".remove-img-icon").click(function () {
+        $(this).parent().remove();
+    })
+
+    document.querySelectorAll(".delete-btn").forEach(item => {
         item.addEventListener("click", function (e) {
             e.preventDefault();
             let url = this.getAttribute("href");
